@@ -3,6 +3,7 @@ import re
 # Valid autobadge values: auto, +N, -N
 VALID_AUTOBADGE = re.compile(r'^(auto|[+-][\d]+)$')
 
+
 def notification(alert=None, ios=None, android=None, winphone=None):
     """Create a notification payload.
 
@@ -66,6 +67,7 @@ def ios(alert=None, badge=None, sound=None, content_available=False,
         payload['extras'] = extras
     return payload
 
+
 def android(alert, title=None, builder_id=None, extras=None):
     """Android specific platform override payload.
 
@@ -108,6 +110,7 @@ def winphone(alert, title=None, _open_page=None, extras=None):
         payload['extras'] = extras
     return payload
 
+
 def message(msg_content, title=None, content_type=None, extras=None):
     """Inner-conn push message payload creation.
 
@@ -128,6 +131,7 @@ def message(msg_content, title=None, content_type=None, extras=None):
         payload['extras'] = extras
     return payload
 
+
 def platform(*types):
     """Create a platform specifier.
 
@@ -146,9 +150,11 @@ def platform(*types):
             raise ValueError("Invalid platform '%s'" % t)
     return [t for t in types]
 
+
 def options(options):
     """Create options object."""
     return {"options": options}
+
 
 def audience(*types):
     """Select audience that match all of the given selectors.

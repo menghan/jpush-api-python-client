@@ -5,31 +5,34 @@ import sys
 if 2 != sys.version_info[0]:
     unicode = str
 
+
 def add(*types):
     """Select a (list of) to be added objects(s)
 
     >>> add("registrationid1", "registrationid2")
     {'add': ['registrationid1', 'registrationid2']}
-    >>> add("tag1", "tag2")                         
+    >>> add("tag1", "tag2")
     {'add': ['tag1', 'tag2']}
-    >>> add("alias1", "alias2")   
+    >>> add("alias1", "alias2")
     {'add': ['alias1', 'alias2']}
     """
     vadd = [v for v in types]
     return {"add": vadd}
 
+
 def remove(*types):
     """Select a (list of) to be removed objects(s)
 
-    >>> remove("registrationid1", "registrationid2")   
+    >>> remove("registrationid1", "registrationid2")
     {'remove': ['registrationid1', 'registrationid2']}
-    >>> remove("tag1", "tag2")                              
+    >>> remove("tag1", "tag2")
     {'remove': ['tag1', 'tag2']}
-    >>> remove("alias1", "alias2")                        
+    >>> remove("alias1", "alias2")
     {'remove': ['alias1', 'alias2']}
     """
     vremove = [v for v in types]
     return {"remove": vremove}
+
 
 def device_tag(*types):
     """Get a tag object
@@ -53,6 +56,7 @@ def device_tag(*types):
             tag["tags"][key] = t[key]
     return tag
 
+
 def device_alias(*types):
     """Get an alias object
 
@@ -66,7 +70,7 @@ def device_alias(*types):
     alias = {}
     if 1 == len(types) and isinstance(types[0], (str, unicode)):
         alias["alias"] = types[0]
-        return alias 
+        return alias
     alias["alias"] = {}
     for t in types:
         for key in t:
@@ -74,6 +78,7 @@ def device_alias(*types):
                 raise ValueError("Invalid alias '%s'" % t)
             alias["alias"][key] = t[key]
     return alias
+
 
 def device_regid(*types):
     """Get a registration_id object

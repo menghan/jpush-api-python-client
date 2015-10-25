@@ -5,7 +5,9 @@ from jpush import common
 
 logger = logging.getLogger('jpush')
 
+
 class Push(object):
+
     """A push notification. Set audience, message, etc, and send."""
 
     def __init__(self, jpush):
@@ -43,7 +45,7 @@ class Push(object):
         """
         body = json.dumps(self.payload)
         response = self._jpush._request('POST', body,
-            common.PUSH_URL, 'application/json', version=3)
+                                        common.PUSH_URL, 'application/json', version=3)
 
         logger.debug(response.content)
         return PushResponse(response)
@@ -59,13 +61,14 @@ class Push(object):
         """
         body = json.dumps(self.payload)
         response = self._jpush._request('POST', body,
-            common.VALIDATE_PUSH_URL, 'application/json', version=3)
+                                        common.VALIDATE_PUSH_URL, 'application/json', version=3)
 
         logger.debug(response.content)
         return PushResponse(response)
 
 
 class PushResponse(object):
+
     """Response to a successful push notification send.
 
     Right now this is a fairly simple wrapper around the json payload response,

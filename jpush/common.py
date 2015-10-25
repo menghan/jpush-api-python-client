@@ -14,11 +14,14 @@ ALIAS_URL = DEVICE_BASEURL + "v3/aliases/"
 
 logger = logging.getLogger('jpush')
 
+
 class Unauthorized(Exception):
+
     """Raised when we get a 401 from the server"""
 
 
 class JPushFailure(Exception):
+
     """Raised when we get an error response from the server.
     :param args: For backwards compatibility, ``*args`` includes the status and
         response body.
@@ -55,4 +58,4 @@ class JPushFailure(Exception):
             response.status_code, error_code, error, json.dumps(details))
 
         return cls(error, error_code, details, response, response.status_code,
-            response.content)
+                   response.content)
