@@ -24,7 +24,7 @@ class Device(object):
         url = common.TAGLIST_URL
         body = None
         info = self.send("GET", url, body)
-        print (info)
+        logger.debug(info)
         return info
 
     def get_deviceinfo(self, registration_id):
@@ -33,7 +33,7 @@ class Device(object):
         url = common.DEVICE_URL + registration_id + "/"
         body = None
         info = self.send("GET", url, body)
-        print (info)
+        logger.debug(info)
         return info
 
     def set_deviceinfo(self, registration_id, entity):
@@ -42,7 +42,7 @@ class Device(object):
         url = common.DEVICE_URL + registration_id + "/"
         body = json.dumps(entity)
         info = self.send("POST", url, body)
-        print (url), (body), (info)
+        logger.debug('%s %s %s', url, body, info)
         return info
 
     def delete_tag(self, tag, platform=None):
@@ -52,9 +52,9 @@ class Device(object):
         body = None
         if platform:
             body = platform
-        print (url), (body)
+        logger.debug('%s %s', url, body)
         info = self.send("DELETE", url, body)
-        print (info)
+        logger.debug(info)
         return info
 
     def update_tagusers(self, tag, entity):
@@ -62,9 +62,9 @@ class Device(object):
         """
         url = common.TAG_URL + tag + "/"
         body = json.dumps(entity)
-        print (url), (body)
+        logger.debug('%s %s', url, body)
         info = self.send("POST", url, body)
-        print (info)
+        logger.debug(info)
         return info
 
     def check_taguserexist(self, tag, registration_id):
@@ -72,9 +72,9 @@ class Device(object):
         """
         url = common.TAG_URL + tag + "/registration_ids/" + registration_id
         body = registration_id
-        print (url), (registration_id)
+        logger.debug('%s %s', url, registration_id)
         info = self.send("GET", url, body)
-        print (info)
+        logger.debug(info)
         return info
 
     def delete_alias(self, alias, platform=None):
@@ -84,9 +84,9 @@ class Device(object):
         body = None
         if platform:
             body = platform
-        print (url), (body)
+        logger.debug('%s %s', url, body)
         info = self.send("DELETE", url, body)
-        print (info)
+        logger.debug(info)
         return info
 
     def get_aliasuser(self, alias, platform=None):
@@ -96,9 +96,9 @@ class Device(object):
         body = None
         if platform:
             body = platform
-        print (url), (body)
+        logger.debug('%s %s', url, body)
         info = self.send("GET", url, body)
-        print (info)
+        logger.debug(info)
         return info
     
 class DeviceResponse(object):
